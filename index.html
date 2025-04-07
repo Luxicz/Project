@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Listing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Directory Listing</h1>
+    <ul id="file-list"></ul>
+
+    <script>
+        // Fetch the directory listing from the server
+        fetch('/list')
+            .then(response => response.json())
+            .then(files => {
+                const fileList = document.getElementById('file-list');
+                files.forEach(file => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = file;
+                    a.textContent = file;
+                    li.appendChild(a);
+                    fileList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching file list:', error);
+            });
+    </script>
+</body>
+</html>
