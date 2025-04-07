@@ -30,7 +30,7 @@
 
     <script>
         // Fetch the directory listing from the server
-        fetch('https://list-worker.luke-pro.workers.dev/list') // Replace <worker-subdomain> with your Worker subdomain
+        fetch('https://list-worker.luke-pro.workers.dev/files.json') // Replace <worker-subdomain> with your Worker subdomain
             .then(response => response.json())
             .then(files => {
                 const fileList = document.getElementById('file-list');
